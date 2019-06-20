@@ -31,10 +31,10 @@ describe('define', function () {
     sofUtil.defineProperties(someOb, fields)
     // Define Properties
     someOb.r = '0x00004'
-    assert.strict.equal(someOb.r.toString('hex'), '04')
+    assert.equal(someOb.r.toString('hex'), '04')
 
     someOb.r = Buffer.from([0, 0, 0, 0, 4])
-    assert.strict.equal(someOb.r.toString('hex'), '04')
+    assert.equal(someOb.r.toString('hex'), '04')
   })
 
   it('shouldn\'t allow wrong size for exact size requirements', function () {
@@ -74,16 +74,16 @@ describe('define', function () {
     ]
 
     sofUtil.defineProperties(someOb, fields, data)
-    assert.strict.deepEqual(someOb.toJSON(true), expected, 'should produce the correctly labeled object')
+    assert.deepEqual(someOb.toJSON(true), expected, 'should produce the correctly labeled object')
 
     var someOb2 = {}
     var srlpEncoded = someOb.serialize().toString('hex')
     sofUtil.defineProperties(someOb2, fields, srlpEncoded)
-    assert.strict.equal(someOb2.serialize().toString('hex'), srlpEncoded, 'the constuctor should accept srlp encoded buffers')
+    assert.equal(someOb2.serialize().toString('hex'), srlpEncoded, 'the constuctor should accept srlp encoded buffers')
 
     var someOb3 = {}
     sofUtil.defineProperties(someOb3, fields, expectedArray)
-    assert.strict.deepEqual(someOb.toJSON(), expectedArray, 'should produce the correctly object')
+    assert.deepEqual(someOb.toJSON(), expectedArray, 'should produce the correctly object')
   })
 
   it('it should not accept invalid values in the constuctor', function () {
@@ -107,10 +107,10 @@ describe('define', function () {
     }
 
     sofUtil.defineProperties(someOb, fields, data)
-    assert.strict.equal(someOb.blah.toString(), 'test')
+    assert.equal(someOb.blah.toString(), 'test')
     someOb.blah = 'lol'
-    assert.strict.equal(someOb.blah.toString(), 'lol')
-    assert.strict.equal(someOb.aword.toString(), 'lol')
+    assert.equal(someOb.blah.toString(), 'lol')
+    assert.equal(someOb.aword.toString(), 'lol')
   })
 
   it('alias should work #2', function () {
@@ -118,7 +118,7 @@ describe('define', function () {
     var data = { blah: '42' }
 
     sofUtil.defineProperties(someOb, fields, data)
-    // assert.strict.equal(someOb.blah, '42')
-    // assert.strict.equal(someOb.aword, '42')
+    assert.equal(someOb.blah, '42')
+    assert.equal(someOb.aword, '42')
   })
 })

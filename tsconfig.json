@@ -1,0 +1,4 @@
+{
+  "extends": "@sophonjs/config-tsc",
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}
